@@ -1,12 +1,12 @@
 package br.com.magalu.referenciaprojetofinal.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
+@CrossOrigin
+@RestController(value = "carro")
 public class CarroController {
 
-    @GetMapping
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String helloWebWorld(){
         return "Hello World";
     }

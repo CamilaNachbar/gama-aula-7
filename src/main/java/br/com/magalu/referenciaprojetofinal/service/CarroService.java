@@ -12,7 +12,6 @@ public class CarroService {
     @Autowired
     private CarroRepository carroRepository;
 
-
     public Carro adicionarCarro(){
         return carroRepository.save(new Carro("Uno", "XP1234", "2012", "branco"));
     }
