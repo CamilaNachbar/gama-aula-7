@@ -22,10 +22,15 @@ public class CarroTest {
     }
 
     @Test
-    public void salvandoNoBanco(){
+    public void comparandoAtributos(){
         Carro carro = new CarroBuilder().defaultValues();
-        Carro teste= carroRepository.save(carro);
-        assertThat(teste).isNotNull();
+        assertThat(carro.getAno()).isEqualTo(DefaultValues.ANO);
     }
 
+    @Test
+    public void salvandoNoBanco() {
+        Carro carro = new CarroBuilder().defaultValues();
+        Carro teste = carroRepository.save(carro);
+        assertThat(teste).isNotNull();
+    }
 }

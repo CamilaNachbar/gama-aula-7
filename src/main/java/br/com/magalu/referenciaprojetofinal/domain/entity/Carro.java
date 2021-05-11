@@ -1,10 +1,16 @@
 package br.com.magalu.referenciaprojetofinal.domain.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "carro")
 public class Carro{
+
+    public Carro(){
+
+    }
     public Carro(String nome, String modelo, String ano, String cor) {
         this.nome = nome;
         this.modelo = modelo;
@@ -13,7 +19,9 @@ public class Carro{
     }
 
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
 
     private String nome;
     private String modelo;
@@ -51,4 +59,25 @@ public class Carro{
     public void setCor(String cor) {
         this.cor = cor;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return "Carro{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", ano='" + ano + '\'' +
+                ", cor='" + cor + '\'' +
+                '}';
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
 }
