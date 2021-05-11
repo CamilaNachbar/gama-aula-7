@@ -3,7 +3,6 @@ package br.com.magalu.referenciaprojetofinal;
 import br.com.magalu.referenciaprojetofinal.config.SwaggerConfig;
 import br.com.magalu.referenciaprojetofinal.controllers.CarroController;
 import br.com.magalu.referenciaprojetofinal.domain.entity.Carro;
-import br.com.magalu.referenciaprojetofinal.domain.repository.CarroRepository;
 import br.com.magalu.referenciaprojetofinal.service.CarroService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
