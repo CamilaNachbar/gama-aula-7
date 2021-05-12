@@ -21,7 +21,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis((Predicate<RequestHandler>) RequestHandlerSelectors.basePackage("br.com.magul.aula.aula7.controller"))
+                .apis((Predicate<RequestHandler>) RequestHandlerSelectors.basePackage("br.com.magalu.referenciaprojetofinal.controller"))
                 .paths((Predicate<String>) PathSelectors.any())
                 .build()
                 .apiInfo(metaData());

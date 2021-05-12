@@ -1,9 +1,7 @@
 package br.com.magalu.referenciaprojetofinal.domain.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "carro")
 public class Carro{
@@ -20,13 +18,19 @@ public class Carro{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+    private Long id_carro;
 
     private String nome;
     private String modelo;
     private String ano;
     private String cor;
+
+    //nome da lista em concessionaria
+    @ManyToMany(mappedBy = "carros")
+    private List<Concessionária> concessionarias;
+
+    @ManyToOne
+    private Concessionária concessionária;
 
     public String getNome() {
         return nome;
@@ -61,13 +65,13 @@ public class Carro{
     }
 
     public Long getId() {
-        return id;
+        return id_carro;
     }
 
     @Override
     public String toString() {
         return "Carro{" +
-                "id=" + id +
+                "id=" + id_carro +
                 ", nome='" + nome + '\'' +
                 ", modelo='" + modelo + '\'' +
                 ", ano='" + ano + '\'' +
@@ -76,7 +80,7 @@ public class Carro{
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.id_carro = id;
     }
 
 

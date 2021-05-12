@@ -9,15 +9,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@ComponentScan(basePackageClasses = {Carro.class, CarroService.class, CarroController.class,SwaggerConfig.class})
+@ComponentScan(basePackageClasses =
+		{		Carro.class,
+				CarroService.class,
+				CarroController.class,
+				SwaggerConfig.class
+		})
 @EnableJpaRepositories(basePackages = {
 		"br.com.magalu.referenciaprojetofinal.domain.repository.**"
 		})
 @SpringBootApplication
 public class ReferenciaProjetoFinalApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(ReferenciaProjetoFinalApplication.class, args);
 	}
-
 }
