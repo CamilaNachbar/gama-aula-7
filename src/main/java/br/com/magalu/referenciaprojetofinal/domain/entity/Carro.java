@@ -1,10 +1,11 @@
 package br.com.magalu.referenciaprojetofinal.domain.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity(name = "carro")
-public class Carro{
+public class Carro implements Serializable {
 
     public Carro(){
 
@@ -30,11 +31,20 @@ public class Carro{
     private String cor;
 
     //nome da lista em concessionaria
-    @ManyToMany(mappedBy = "carros")
+    @ManyToMany( cascade= CascadeType.ALL, fetch = FetchType.LAZY)
+    //concessionaria_carros nome da tabela gerada pelo ORM - HIBERNATE
+    @JoinTable(name ="wishlist",
+            joinColumns = @JoinColumn(name="id_carro"),
+            inverseJoinColumns = @JoinColumn(name = "id_concessionaria"))
     private List<Concessionária> concessionarias;
 
-    @ManyToOne
-    private Concessionária concessionária;
+    public List<Concessionária> getConcessionarias() {
+        return concessionarias;
+    }
+
+    public void setConcessionarias(List<Concessionária> concessionarias) {
+        this.concessionarias = concessionarias;
+    }
 
     public String getNome() {
         return nome;

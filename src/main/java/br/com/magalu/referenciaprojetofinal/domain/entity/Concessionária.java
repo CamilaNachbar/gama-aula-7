@@ -13,17 +13,15 @@ public class Concessionária {
 
     private String nomeFantasia;
 
-    @OneToMany
-    private List<Carro> listaOneToManyCarros;
-
-    //pensar sobre as 20 posicoes de wishlist
+     //pensar sobre as 20 posicoes de wishlist
+     public Concessionária() {
+     }
+    public Concessionária(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
+    }
     //como apagar da wishlist
 
-    @ManyToMany
-    //concessionaria_carros nome da tabela gerada pelo ORM - HIBERNATE
-    @JoinTable(name ="wishlist",
-            joinColumns = @JoinColumn(name="id_concessionaria"),
-            inverseJoinColumns = @JoinColumn(name = "id_carro"))
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "concessionarias")
     //DE CONCESSIONARIA PARA CARROS
     private List<Carro> carros;
 
