@@ -1,28 +1,18 @@
 package br.com.magalu.referenciaprojetofinal.domain.entity;
 
-
 import br.com.magalu.referenciaprojetofinal.domain.repository.CarroRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
 
 import static org.assertj.core.api.Assertions.assertThat;
-@SpringBootTest
-public class CarroTest {
 
+public class CarroConcessionariaTest {
     @Autowired
     private CarroRepository carroRepository;
 
     @Test
     public void criandoInstancia(){
         Carro carro = new CarroBuilder().defaultValues();
-        assertThat(carro).isNotNull();
-    }
-
-    @Test
-    public void criandoInstanciaComConcessionaria(){
-        Carro carro = new CarroBuilder().defaultValuesAndConcessionaria();
         assertThat(carro).isNotNull();
     }
 

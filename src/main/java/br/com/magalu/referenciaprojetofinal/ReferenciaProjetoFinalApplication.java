@@ -13,7 +13,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 		{		Carro.class,
 				CarroService.class,
 				CarroController.class,
-				SwaggerConfig.class
+				SwaggerConfig.class,
+
 		})
 @EnableJpaRepositories(basePackages = {
 		"br.com.magalu.referenciaprojetofinal.domain.repository.**"

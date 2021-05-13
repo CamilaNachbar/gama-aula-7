@@ -1,10 +1,14 @@
 package br.com.magalu.referenciaprojetofinal.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity(name = "carro")
-public class Carro{
+public class Carro implements Serializable {
 
     public Carro(){
 
@@ -20,17 +24,31 @@ public class Carro{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_carro;
 
+    @Column(name="nome")
     private String nome;
+    @Column(name="modelo")
     private String modelo;
+    @Column(name="ano")
     private String ano;
+    @Column(name="cor")
     private String cor;
 
     //nome da lista em concessionaria
-    @ManyToMany(mappedBy = "carros")
+
+    @ManyToMany( fetch = FetchType.EAGER)
+    //concessionaria_carros nome da tabela gerada pelo ORM - HIBERNATE
+    @JoinTable(name ="wishlist",
+            joinColumns = @JoinColumn(name="id_carro"),
+            inverseJoinColumns = @JoinColumn(name = "id_concessionaria"))
     private List<Concessionária> concessionarias;
 
-    @ManyToOne
-    private Concessionária concessionária;
+    public List<Concessionária> getConcessionarias() {
+        return concessionarias;
+    }
+
+    public void setConcessionarias(List<Concessionária> concessionarias) {
+        this.concessionarias = concessionarias;
+    }
 
     public String getNome() {
         return nome;
