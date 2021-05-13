@@ -1,11 +1,21 @@
 package br.com.magalu.referenciaprojetofinal.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Concessionária {
+
+    public Long getId_concessionaria() {
+        return id_concessionaria;
+    }
+
+    public void setId_concessionaria(Long id_concessionaria) {
+        this.id_concessionaria = id_concessionaria;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +31,8 @@ public class Concessionária {
     }
     //como apagar da wishlist
 
-    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "concessionarias")
+
+    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "concessionarias")
     //DE CONCESSIONARIA PARA CARROS
     private List<Carro> carros;
 

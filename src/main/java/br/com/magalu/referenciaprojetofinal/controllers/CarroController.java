@@ -23,7 +23,7 @@ public class CarroController {
     //Salvar
     @ApiOperation(value = "Salvar carro")
     @RequestMapping(value = "/carro", method = RequestMethod.POST)
-    public ResponseEntity<Carro> saveProduto(@RequestBody Carro carro){
+    public ResponseEntity<Carro> saveCarro(@RequestBody Carro carro){
         return new ResponseEntity<Carro>(carroService.salvarCarro(carro), HttpStatus.CREATED);
     }
 

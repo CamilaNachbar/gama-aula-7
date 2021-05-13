@@ -7,6 +7,7 @@ import br.com.magalu.referenciaprojetofinal.domain.repository.ConcessionariaRepo
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,8 +19,24 @@ public class CarroService {
     @Autowired
     private ConcessionariaRepository concessionariaRepository;
 
+    //acontece que nao estavamos buscando as concessionarias referentes no banco
+    //como minha concessionaria de id x não existe ele foi criando nosass concessionarias
+    // gerando concessionarias repetidas
     public Carro salvarCarro(Carro carro){
+        List<Concessionária> listaDeConcessionariasQueExitem = new ArrayList<>();
         //vai ter que buscar a concessionaria e salvar ou adicionar a mesma
+        //percorre o carro vendo as suas concessionarias
+        for (Concessionária c: carro.getConcessionarias()){
+            //buscar no banco se a concessionaria existe
+          Concessionária concessionária =  concessionariaRepository.getOne(c.getId_concessionaria());
+          //caso exista: Cria relacionamento
+          if(concessionária != null){
+              //adiciona na lista auxiliar
+              listaDeConcessionariasQueExitem.add(concessionária);
+          }
+        }
+        // setta somente as que existem
+        carro.setConcessionarias(listaDeConcessionariasQueExitem);
         return carroRepository.save(carro);
     }
 
