@@ -5,9 +5,10 @@ import br.com.magalu.referenciaprojetofinal.domain.repository.CarroRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+@Profile("local")
 @SpringBootTest
 public class CarroTest {
 
@@ -24,12 +25,5 @@ public class CarroTest {
     public void comparandoAtributos(){
         Carro carro = new CarroBuilder().defaultValues();
         assertThat(carro.getAno()).isEqualTo(DefaultValues.ANO);
-    }
-
-    @Test
-    public void salvandoNoBanco() {
-        Carro carro = new CarroBuilder().defaultValues();
-        Carro teste = carroRepository.save(carro);
-        assertThat(teste).isNotNull();
     }
 }

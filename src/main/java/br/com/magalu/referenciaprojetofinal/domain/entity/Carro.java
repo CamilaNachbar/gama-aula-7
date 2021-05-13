@@ -20,9 +20,13 @@ public class Carro{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_carro;
 
+    @Column(name="nome")
     private String nome;
+    @Column(name="modelo")
     private String modelo;
+    @Column(name="ano")
     private String ano;
+    @Column(name="cor")
     private String cor;
 
     //nome da lista em concessionaria
