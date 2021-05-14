@@ -66,13 +66,14 @@ public class CarroService {
 
     }
 
-    public Carro inserirNaListaDeCarroAConcessionaria(Long id_carro, Long id_concessionaria){
-        Carro retorno = carroRepository.getOne(id_carro);
+    public Object inserirNaListaDeCarroAConcessionaria(Long id_carro, Long id_concessionaria) throws Exception {
+        Carro carro = carroRepository.getOne(id_carro);
         Concessionária concessionária = concessionariaRepository.getOne(id_concessionaria);
-
-        retorno.getConcessionarias().add(concessionária);
-        return carroRepository.save(retorno);
-
+        if (carro != null && concessionária != null) {
+            carro.getConcessionarias().add(concessionária);
+            return carroRepository.save(carro);
+        }
+       throw new Exception("teste");
     }
 
     public List<Concessionária> buscarCarroEmConcessionaria(Long id){
