@@ -23,7 +23,7 @@ public class CarroController {
     //Salvar
     @ApiOperation(value = "Salvar carro")
     @RequestMapping(value = "/carro", method = RequestMethod.POST)
-    public ResponseEntity<Carro> saveCarro(@RequestBody Carro carro){
+    public ResponseEntity<Carro> salvarCarro(@RequestBody Carro carro){
         return new ResponseEntity<Carro>(carroService.salvarCarro(carro), HttpStatus.CREATED);
     }
 
@@ -46,12 +46,12 @@ public class CarroController {
     //deletar
     @ApiOperation(value = "Deletar carro atraves do id")
     @RequestMapping(value = "/carro", method = RequestMethod.DELETE)
-    public ResponseEntity<String> deletarProduto(@RequestBody Long id){
+    public ResponseEntity<String> deletarProduto(@RequestParam("id") Long id){
         try {
             carroService.deletarCarro(id);
             return new ResponseEntity<>("Deletado com sucesso", HttpStatus.OK);
         }catch (Exception e){
-            return new ResponseEntity<>("Erro ao deletar carro", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Erro ao deletar carro"+ e, HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -66,9 +66,13 @@ public class CarroController {
     //inserir concessionarias
     @ApiOperation(value = "Salvar nova concessionaria para o carro")
     @RequestMapping(value = "/carro/concessionaria", method = RequestMethod.POST)
-    public ResponseEntity<Carro>savaNovoItemWishLis(@RequestBody Long id_carro,
-                                                    @RequestBody Long id_concessionaria)
-    {
-        return new ResponseEntity<Carro>(carroService.inserirNaListaDeCarroAConcessionaria(id_carro, id_concessionaria), HttpStatus.ACCEPTED);
+    public ResponseEntity<Object>salvaNovoItemWishLis(@RequestBody Long id_carro,
+                                                    @RequestBody Long id_concessionaria) {
+        try {
+            Carro carro = (Carro) carroService.inserirNaListaDeCarroAConcessionaria(id_carro, id_concessionaria);
+            return new ResponseEntity<>(carro, HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Erro ao deletar carro", HttpStatus.BAD_REQUEST);
+        }
     }
 }

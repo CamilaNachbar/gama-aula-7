@@ -1,6 +1,8 @@
 package br.com.magalu.referenciaprojetofinal.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -35,7 +37,7 @@ public class Carro implements Serializable {
 
     //nome da lista em concessionaria
 
-    @ManyToMany( fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //concessionaria_carros nome da tabela gerada pelo ORM - HIBERNATE
     @JoinTable(name ="wishlist",
             joinColumns = @JoinColumn(name="id_carro"),
